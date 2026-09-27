@@ -1,0 +1,102 @@
+[
+  {
+    "id": "rag-vs-finetuning",
+    "query": "用 RAG 还是微调来让 LLM 适配私有知识库，各自的权衡是什么？",
+    "key_points": [
+      "RAG 把知识放在外部，无需重训即可更新",
+      "微调把知识/行为固化进权重",
+      "成本与延迟差异",
+      "各自适用的场景"
+    ]
+  },
+  {
+    "id": "vector-db-choice",
+    "query": "对比 pgvector、Pinecone 和 Qdrant 在生产环境向量检索中的表现。",
+    "key_points": [
+      "pgvector 跑在 Postgres 内（运维简单）",
+      "Pinecone 是全托管/无服务器",
+      "Qdrant 开源、可自托管",
+      "扩展性与过滤能力"
+    ]
+  },
+  {
+    "id": "agent-memory",
+    "query": "让 LLM 智能体具备长期记忆的主要方法有哪些？",
+    "key_points": [
+      "短期记忆与长期记忆的区分",
+      "基于向量库/检索的记忆",
+      "摘要/压缩",
+      "结构化或情景记忆存储"
+    ]
+  },
+  {
+    "id": "llm-eval-methods",
+    "query": "生产环境中团队如何评估 LLM 生成文本的质量？",
+    "key_points": [
+      "LLM-as-judge",
+      "有参考指标与无参考指标",
+      "人工评估",
+      "CI 中的回归测试"
+    ]
+  },
+  {
+    "id": "prompt-injection",
+    "query": "什么是提示词注入？有哪些防御手段？",
+    "key_points": [
+      "提示词注入的定义",
+      "直接注入与间接注入",
+      "输入/输出防护栏",
+      "工具的权限隔离/最小权限"
+    ]
+  },
+  {
+    "id": "moe-architecture",
+    "query": "混合专家（MoE）架构如何降低大模型的推理成本？",
+    "key_points": [
+      "专家的稀疏激活",
+      "路由/门控网络",
+      "激活参数量与总参数量",
+      "权衡（如显存占用）"
+    ]
+  },
+  {
+    "id": "structured-output",
+    "query": "有哪些技术能强制 LLM 返回可靠的结构化（JSON）输出？",
+    "key_points": [
+      "受约束/基于语法的解码",
+      "函数/工具调用",
+      "schema 校验与重试",
+      "厂商原生的结构化输出模式"
+    ]
+  },
+  {
+    "id": "rate-limit-backoff",
+    "query": "高并发下系统应如何处理 LLM API 的速率限制（HTTP 429）？",
+    "key_points": [
+      "带抖动的指数退避",
+      "重试策略",
+      "并发限制/排队",
+      "遵循 Retry-After 响应头"
+    ]
+  },
+  {
+    "id": "quantization",
+    "query": "什么是模型量化？它对 LLM 推理有什么影响？",
+    "key_points": [
+      "降低权重精度（如 int8/int4）",
+      "显存和速度收益",
+      "精度/质量权衡",
+      "常见方法（GPTQ、AWQ、bitsandbytes）"
+    ]
+  },
+  {
+    "id": "multi-agent-vs-single",
+    "query": "相比单智能体，多智能体系统在什么情况下才值得引入额外复杂度？",
+    "key_points": [
+      "可并行/可分解的任务",
+      "角色专业化",
+      "协调与成本开销",
+      "单智能体够用的场景"
+    ]
+  }
+]
