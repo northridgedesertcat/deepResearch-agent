@@ -1,4 +1,5 @@
 import time
+from functools import lru_cache
 
 from langchain.agents import create_agent
 from langchain_core.messages import HumanMessage
@@ -7,7 +8,12 @@ from research_agent.models import get_model
 from research_agent.progress import progress
 from research_agent.tools.search import web_search
 
-_agent = create_agent(get_model("researcher"), tools=[web_search])
+
+@lru_cache(maxsize=1)
+def _agent():
+    """惰性创建研究员智能体：模块导入不再要求 OPENAI_API_KEY。"""
+    return create_agent(get_model("researcher"), tools=[web_search])
+
 
 def researcher_node(state):
     task = state["subtasks"][0]
@@ -16,7 +22,7 @@ def researcher_node(state):
     # 让预算护栏看到本分支的真实开销。reducer 会在扇出分支间求和。
     counter = LLMCallCounter()
     started = time.perf_counter()
-    result = _agent.invoke(
+    result = _agent().invoke(
         {"messages": [HumanMessage(content=f"请深入研究以下任务，并用中文汇总研究发现：{task}")]},
         config={"callbacks": [counter]},
     )
